@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF64347D1FA57C6900AC4B52 /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */; };
 		EF6B9EEE1FA56A48000258EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9EED1FA56A48000258EB /* AppDelegate.m */; };
 		EF6B9EF11FA56A48000258EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9EF01FA56A48000258EB /* ViewController.m */; };
 		EF6B9EF41FA56A48000258EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF6B9EF21FA56A48000258EB /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
+		EF64347C1FA57C6900AC4B52 /* ZGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
 		EF6B9EE91FA56A48000258EB /* ZGPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6B9EEC1FA56A48000258EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EF6B9EED1FA56A48000258EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -57,8 +60,6 @@
 		EF6B9F231FA56E9D000258EB /* ZGPhotoBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPhotoBrowser.m; sourceTree = "<group>"; };
 		EF6B9F251FA5718C000258EB /* ZGPhotoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPhotoModel.h; sourceTree = "<group>"; };
 		EF6B9F261FA5718C000258EB /* ZGPhotoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPhotoModel.m; sourceTree = "<group>"; };
-		EF6B9F2B1FA5790A000258EB /* ZGProgressHUD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
-		EF6B9F2C1FA5790A000258EB /* ZGProgressHUD.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
 		EF6B9F2E1FA579B9000258EB /* UIColor+DHUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+DHUtil.h"; sourceTree = "<group>"; };
 		EF6B9F2F1FA579B9000258EB /* UIColor+DHUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DHUtil.m"; sourceTree = "<group>"; };
 		EF6B9F301FA579B9000258EB /* UIImage+DHUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+DHUtil.h"; sourceTree = "<group>"; };
@@ -193,18 +194,10 @@
 		EF6B9F291FA5790A000258EB /* ZGProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				EF6B9F2A1FA5790A000258EB /* View */,
+				EF64347C1FA57C6900AC4B52 /* ZGProgressHUD.h */,
+				EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */,
 			);
 			path = ZGProgressHUD;
-			sourceTree = "<group>";
-		};
-		EF6B9F2A1FA5790A000258EB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				EF6B9F2B1FA5790A000258EB /* ZGProgressHUD.h */,
-				EF6B9F2C1FA5790A000258EB /* ZGProgressHUD.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		EF6B9F2D1FA579B9000258EB /* Category */ = {
@@ -356,6 +349,7 @@
 				EF6B9EFC1FA56A48000258EB /* main.m in Sources */,
 				EF6B9F241FA56E9D000258EB /* ZGPhotoBrowser.m in Sources */,
 				EF6B9EEE1FA56A48000258EB /* AppDelegate.m in Sources */,
+				EF64347D1FA57C6900AC4B52 /* ZGProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

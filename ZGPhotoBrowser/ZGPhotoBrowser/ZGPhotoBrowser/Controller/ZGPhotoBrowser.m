@@ -242,7 +242,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (void)showAlertMessage:(NSString *)message view:(UIView *)view
 {
-//    [ZGProgressHUD showInView:view message:message mode:ZGProgressHUDModeToast];
+    [ZGProgressHUD showInView:view message:message mode:ZGProgressHUDModeToast];
 }
 
 @end
