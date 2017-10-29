@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIImageView+WebCache.h"
+#import <UIImageView+WebCache.h>
 
 @interface ZGTestCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *imgView;

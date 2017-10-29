@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2B2838883D4E48211487CBD /* libPods-ZGPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0014BDD693B0D31CE6E1A681 /* libPods-ZGPhotoBrowser.a */; };
 		EF64347D1FA57C6900AC4B52 /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */; };
 		EF6B9EEE1FA56A48000258EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9EED1FA56A48000258EB /* AppDelegate.m */; };
 		EF6B9EF11FA56A48000258EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9EF01FA56A48000258EB /* ViewController.m */; };
@@ -38,59 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0014BDD693B0D31CE6E1A681 /* libPods-ZGPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZGPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		27B68E7EA426009A541BECA9 /* Pods-ZGPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZGPhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZGPhotoBrowser/Pods-ZGPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
+		76461135F561FE5D67851B05 /* Pods-ZGPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZGPhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZGPhotoBrowser/Pods-ZGPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
 		EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
 		EF64347C1FA57C6900AC4B52 /* ZGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
-		EF64354F1FA5B10800AC4B52 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
-		EF6435501FA5B10800AC4B52 /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
-		EF6435511FA5B10800AC4B52 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
-		EF6435521FA5B10800AC4B52 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
-		EF6435531FA5B10800AC4B52 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
-		EF6435541FA5B10800AC4B52 /* NSData+ImageContentType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+ImageContentType.m"; sourceTree = "<group>"; };
-		EF6435551FA5B10800AC4B52 /* NSImage+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSImage+WebCache.h"; sourceTree = "<group>"; };
-		EF6435561FA5B10800AC4B52 /* NSImage+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSImage+WebCache.m"; sourceTree = "<group>"; };
-		EF6435571FA5B10800AC4B52 /* SDImageCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
-		EF6435581FA5B10800AC4B52 /* SDImageCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
-		EF6435591FA5B10800AC4B52 /* SDImageCacheConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDImageCacheConfig.h; sourceTree = "<group>"; };
-		EF64355A1FA5B10800AC4B52 /* SDImageCacheConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDImageCacheConfig.m; sourceTree = "<group>"; };
-		EF64355B1FA5B10800AC4B52 /* SDWebImageCoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageCoder.h; sourceTree = "<group>"; };
-		EF64355C1FA5B10800AC4B52 /* SDWebImageCoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCoder.m; sourceTree = "<group>"; };
-		EF64355D1FA5B10800AC4B52 /* SDWebImageCodersManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageCodersManager.h; sourceTree = "<group>"; };
-		EF64355E1FA5B10800AC4B52 /* SDWebImageCodersManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCodersManager.m; sourceTree = "<group>"; };
-		EF64355F1FA5B10800AC4B52 /* SDWebImageCompat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageCompat.h; sourceTree = "<group>"; };
-		EF6435601FA5B10800AC4B52 /* SDWebImageCompat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageCompat.m; sourceTree = "<group>"; };
-		EF6435611FA5B10800AC4B52 /* SDWebImageDownloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloader.h; sourceTree = "<group>"; };
-		EF6435621FA5B10800AC4B52 /* SDWebImageDownloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloader.m; sourceTree = "<group>"; };
-		EF6435631FA5B10800AC4B52 /* SDWebImageDownloaderOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageDownloaderOperation.h; sourceTree = "<group>"; };
-		EF6435641FA5B10800AC4B52 /* SDWebImageDownloaderOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDownloaderOperation.m; sourceTree = "<group>"; };
-		EF6435651FA5B10800AC4B52 /* SDWebImageGIFCoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageGIFCoder.h; sourceTree = "<group>"; };
-		EF6435661FA5B10800AC4B52 /* SDWebImageGIFCoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageGIFCoder.m; sourceTree = "<group>"; };
-		EF6435671FA5B10800AC4B52 /* SDWebImageImageIOCoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageImageIOCoder.h; sourceTree = "<group>"; };
-		EF6435681FA5B10800AC4B52 /* SDWebImageImageIOCoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageImageIOCoder.m; sourceTree = "<group>"; };
-		EF6435691FA5B10800AC4B52 /* SDWebImageManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageManager.h; sourceTree = "<group>"; };
-		EF64356A1FA5B10800AC4B52 /* SDWebImageManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageManager.m; sourceTree = "<group>"; };
-		EF64356B1FA5B10800AC4B52 /* SDWebImageOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageOperation.h; sourceTree = "<group>"; };
-		EF64356C1FA5B10800AC4B52 /* SDWebImagePrefetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImagePrefetcher.h; sourceTree = "<group>"; };
-		EF64356D1FA5B10800AC4B52 /* SDWebImagePrefetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImagePrefetcher.m; sourceTree = "<group>"; };
-		EF64356E1FA5B10800AC4B52 /* SDWebImageWebPCoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWebImageWebPCoder.h; sourceTree = "<group>"; };
-		EF64356F1FA5B10800AC4B52 /* SDWebImageWebPCoder.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SDWebImageWebPCoder.m; sourceTree = "<group>"; };
-		EF6435701FA5B10800AC4B52 /* UIButton+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+WebCache.h"; sourceTree = "<group>"; };
-		EF6435711FA5B10800AC4B52 /* UIButton+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
-		EF6435721FA5B10800AC4B52 /* UIImage+ForceDecode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ForceDecode.h"; sourceTree = "<group>"; };
-		EF6435731FA5B10800AC4B52 /* UIImage+ForceDecode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ForceDecode.m"; sourceTree = "<group>"; };
-		EF6435741FA5B10800AC4B52 /* UIImage+GIF.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIF.h"; sourceTree = "<group>"; };
-		EF6435751FA5B10800AC4B52 /* UIImage+GIF.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIF.m"; sourceTree = "<group>"; };
-		EF6435761FA5B10800AC4B52 /* UIImage+MultiFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+MultiFormat.h"; sourceTree = "<group>"; };
-		EF6435771FA5B10800AC4B52 /* UIImage+MultiFormat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+MultiFormat.m"; sourceTree = "<group>"; };
-		EF6435781FA5B10800AC4B52 /* UIImage+WebP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
-		EF6435791FA5B10800AC4B52 /* UIImage+WebP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
-		EF64357A1FA5B10800AC4B52 /* UIImageView+HighlightedWebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HighlightedWebCache.h"; sourceTree = "<group>"; };
-		EF64357B1FA5B10800AC4B52 /* UIImageView+HighlightedWebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HighlightedWebCache.m"; sourceTree = "<group>"; };
-		EF64357C1FA5B10800AC4B52 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
-		EF64357D1FA5B10800AC4B52 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
-		EF64357E1FA5B10800AC4B52 /* UIView+WebCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCache.h"; sourceTree = "<group>"; };
-		EF64357F1FA5B10800AC4B52 /* UIView+WebCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCache.m"; sourceTree = "<group>"; };
-		EF6435801FA5B10800AC4B52 /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
-		EF6435811FA5B10800AC4B52 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		EF6B9EE91FA56A48000258EB /* ZGPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6B9EEC1FA56A48000258EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EF6B9EED1FA56A48000258EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B2838883D4E48211487CBD /* libPods-ZGPhotoBrowser.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,70 +96,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EF64354D1FA5B10800AC4B52 /* SDWebImage */ = {
+		B7ED90A093BA71580D33E435 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EF64354E1FA5B10800AC4B52 /* FLAnimatedImage */,
-				EF6435511FA5B10800AC4B52 /* MKAnnotationView+WebCache.h */,
-				EF6435521FA5B10800AC4B52 /* MKAnnotationView+WebCache.m */,
-				EF6435531FA5B10800AC4B52 /* NSData+ImageContentType.h */,
-				EF6435541FA5B10800AC4B52 /* NSData+ImageContentType.m */,
-				EF6435551FA5B10800AC4B52 /* NSImage+WebCache.h */,
-				EF6435561FA5B10800AC4B52 /* NSImage+WebCache.m */,
-				EF6435571FA5B10800AC4B52 /* SDImageCache.h */,
-				EF6435581FA5B10800AC4B52 /* SDImageCache.m */,
-				EF6435591FA5B10800AC4B52 /* SDImageCacheConfig.h */,
-				EF64355A1FA5B10800AC4B52 /* SDImageCacheConfig.m */,
-				EF64355B1FA5B10800AC4B52 /* SDWebImageCoder.h */,
-				EF64355C1FA5B10800AC4B52 /* SDWebImageCoder.m */,
-				EF64355D1FA5B10800AC4B52 /* SDWebImageCodersManager.h */,
-				EF64355E1FA5B10800AC4B52 /* SDWebImageCodersManager.m */,
-				EF64355F1FA5B10800AC4B52 /* SDWebImageCompat.h */,
-				EF6435601FA5B10800AC4B52 /* SDWebImageCompat.m */,
-				EF6435611FA5B10800AC4B52 /* SDWebImageDownloader.h */,
-				EF6435621FA5B10800AC4B52 /* SDWebImageDownloader.m */,
-				EF6435631FA5B10800AC4B52 /* SDWebImageDownloaderOperation.h */,
-				EF6435641FA5B10800AC4B52 /* SDWebImageDownloaderOperation.m */,
-				EF6435651FA5B10800AC4B52 /* SDWebImageGIFCoder.h */,
-				EF6435661FA5B10800AC4B52 /* SDWebImageGIFCoder.m */,
-				EF6435671FA5B10800AC4B52 /* SDWebImageImageIOCoder.h */,
-				EF6435681FA5B10800AC4B52 /* SDWebImageImageIOCoder.m */,
-				EF6435691FA5B10800AC4B52 /* SDWebImageManager.h */,
-				EF64356A1FA5B10800AC4B52 /* SDWebImageManager.m */,
-				EF64356B1FA5B10800AC4B52 /* SDWebImageOperation.h */,
-				EF64356C1FA5B10800AC4B52 /* SDWebImagePrefetcher.h */,
-				EF64356D1FA5B10800AC4B52 /* SDWebImagePrefetcher.m */,
-				EF64356E1FA5B10800AC4B52 /* SDWebImageWebPCoder.h */,
-				EF64356F1FA5B10800AC4B52 /* SDWebImageWebPCoder.m */,
-				EF6435701FA5B10800AC4B52 /* UIButton+WebCache.h */,
-				EF6435711FA5B10800AC4B52 /* UIButton+WebCache.m */,
-				EF6435721FA5B10800AC4B52 /* UIImage+ForceDecode.h */,
-				EF6435731FA5B10800AC4B52 /* UIImage+ForceDecode.m */,
-				EF6435741FA5B10800AC4B52 /* UIImage+GIF.h */,
-				EF6435751FA5B10800AC4B52 /* UIImage+GIF.m */,
-				EF6435761FA5B10800AC4B52 /* UIImage+MultiFormat.h */,
-				EF6435771FA5B10800AC4B52 /* UIImage+MultiFormat.m */,
-				EF6435781FA5B10800AC4B52 /* UIImage+WebP.h */,
-				EF6435791FA5B10800AC4B52 /* UIImage+WebP.m */,
-				EF64357A1FA5B10800AC4B52 /* UIImageView+HighlightedWebCache.h */,
-				EF64357B1FA5B10800AC4B52 /* UIImageView+HighlightedWebCache.m */,
-				EF64357C1FA5B10800AC4B52 /* UIImageView+WebCache.h */,
-				EF64357D1FA5B10800AC4B52 /* UIImageView+WebCache.m */,
-				EF64357E1FA5B10800AC4B52 /* UIView+WebCache.h */,
-				EF64357F1FA5B10800AC4B52 /* UIView+WebCache.m */,
-				EF6435801FA5B10800AC4B52 /* UIView+WebCacheOperation.h */,
-				EF6435811FA5B10800AC4B52 /* UIView+WebCacheOperation.m */,
+				27B68E7EA426009A541BECA9 /* Pods-ZGPhotoBrowser.debug.xcconfig */,
+				76461135F561FE5D67851B05 /* Pods-ZGPhotoBrowser.release.xcconfig */,
 			);
-			path = SDWebImage;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		EF64354E1FA5B10800AC4B52 /* FLAnimatedImage */ = {
+		CC9FF66A5F9543BA8EAA7F80 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				EF64354F1FA5B10800AC4B52 /* FLAnimatedImageView+WebCache.h */,
-				EF6435501FA5B10800AC4B52 /* FLAnimatedImageView+WebCache.m */,
+				0014BDD693B0D31CE6E1A681 /* libPods-ZGPhotoBrowser.a */,
 			);
-			path = FLAnimatedImage;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		EF6B9EE01FA56A48000258EB = {
@@ -215,6 +120,8 @@
 				EF6B9F041FA56A48000258EB /* ZGPhotoBrowserTests */,
 				EF6B9F0F1FA56A48000258EB /* ZGPhotoBrowserUITests */,
 				EF6B9EEA1FA56A48000258EB /* Products */,
+				B7ED90A093BA71580D33E435 /* Pods */,
+				CC9FF66A5F9543BA8EAA7F80 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,7 +209,6 @@
 		EF6B9F281FA578FF000258EB /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
-				EF64354D1FA5B10800AC4B52 /* SDWebImage */,
 				EF6B9F2D1FA579B9000258EB /* Category */,
 				EF6B9F291FA5790A000258EB /* ZGProgressHUD */,
 			);
@@ -336,9 +242,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF6B9F151FA56A48000258EB /* Build configuration list for PBXNativeTarget "ZGPhotoBrowser" */;
 			buildPhases = (
+				06D5F9B928C16CEA4EEBD36B /* [CP] Check Pods Manifest.lock */,
 				EF6B9EE51FA56A48000258EB /* Sources */,
 				EF6B9EE61FA56A48000258EB /* Frameworks */,
 				EF6B9EE71FA56A48000258EB /* Resources */,
+				E293F71D5C8EEF908F37752F /* [CP] Embed Pods Frameworks */,
+				FC92FCD58C92FA0388C8A8D9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,6 +365,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06D5F9B928C16CEA4EEBD36B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZGPhotoBrowser-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E293F71D5C8EEF908F37752F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZGPhotoBrowser/Pods-ZGPhotoBrowser-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC92FCD58C92FA0388C8A8D9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZGPhotoBrowser/Pods-ZGPhotoBrowser-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EF6B9EE51FA56A48000258EB /* Sources */ = {
@@ -628,10 +588,12 @@
 		};
 		EF6B9F161FA56A48000258EB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27B68E7EA426009A541BECA9 /* Pods-ZGPhotoBrowser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ZGPhotoBrowser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zongGen.ZGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -641,10 +603,12 @@
 		};
 		EF6B9F171FA56A48000258EB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76461135F561FE5D67851B05 /* Pods-ZGPhotoBrowser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ZGPhotoBrowser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zongGen.ZGPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
