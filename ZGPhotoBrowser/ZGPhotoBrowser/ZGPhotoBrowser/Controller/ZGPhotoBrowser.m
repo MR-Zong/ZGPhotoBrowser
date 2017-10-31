@@ -8,6 +8,8 @@
 
 #import "ZGPhotoBrowser.h"
 #import "ZGProgressHUD.h"
+#import <UIImageView+WebCache.h>
+#import "ZGBrowserBottomView.h"
 
 @interface ZGPhotoCell () <UIScrollViewDelegate>
 
@@ -48,6 +50,13 @@
     self.imageView.frame = self.scrollView.bounds;
 }
 
+-(void)setModel:(ZGPhotoModel *)model
+{
+    _model = model;
+    
+    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrlString]];
+}
+
 
 #pragma mark - UIScrollViewDelegate
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
@@ -78,11 +87,11 @@
 
 #pragma mark - ----------------------------------
 
-@interface ZGPhotoBrowser () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZGPhotoCellDelegate>
+@interface ZGPhotoBrowser () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZGPhotoCellDelegate,ZGBrowserBottomViewDelegate>
 
 @property (weak, nonatomic) UICollectionView *collectionView;
 
-@property (weak, nonatomic) UIView *bottomBarView;
+@property (strong, nonatomic) ZGBrowserBottomView *bottomView;
 
 @end
 
@@ -104,7 +113,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     [self initialize];
     [self setupCollectionView];
     [self setupBackBarButton];
-    [self setupBottomBarView];
+    [self setupBottomView];
 }
 
 - (void)initialize
@@ -132,7 +141,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 {
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, -44, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:flowLayout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:flowLayout];
     self.collectionView = collectionView;
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.dataSource = self;
@@ -145,27 +154,26 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 }
 
 
-- (void)setupBottomBarView
+- (void)setupBottomView
 {
-    UIView *bottomBarView = [[UIView alloc] init];
-    self.bottomBarView = bottomBarView;
-    bottomBarView.backgroundColor = [ZG_Default_Navi_Bar_Background colorWithAlphaComponent:0.8];
-    // 这里的 44*2 是跟上面collectionView的frame.y = -44有关的，不要随便模仿
-    bottomBarView.frame = CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44);
-    [self.view addSubview:bottomBarView];
-    
-//    UIButton *sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-////    self.sendButton = sendButton;
-//    CGFloat sendButtonWidth = 60;
-//    CGFloat sendButtonHeight = 22;
-//    sendButton.frame = CGRectMake(self.bottomBarView.bounds.size.width - sendButtonWidth - 10, (self.bottomBarView.bounds.size.height - sendButtonHeight) / 2.0, sendButtonWidth, sendButtonHeight);
-//    [sendButton setTitle:self.sendButtonTitle forState:UIControlStateNormal];
-//    [sendButton addTarget:self action:@selector(sendButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [self refreshBottomBarView];
-//    [bottomBarView addSubview:sendButton];
-    
+    _bottomView = [[ZGBrowserBottomView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44)];
+    _bottomView.delegate = self;
+    [self.view addSubview:_bottomView];
+        
 }
 
+#pragma mark - showInView
+- (void)showInView:(UIView *)view
+{
+    [view addSubview:self.view];
+}
+
+- (void)dismiss
+{
+    if (self.view.superview) {
+        [self.view removeFromSuperview];
+    }
+}
 
 
 #pragma mark - UICollectionViewDataSource,UICollectionViewDelegate
@@ -186,6 +194,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     
     cell.scrollView.zoomScale = 1.0;
     cell.delegate = self;
+    cell.model = self.photoArray[indexPath.item];
     
     return cell;
     
@@ -211,19 +220,19 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 
 #pragma mark - UIScrollViewDelegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSInteger item = scrollView.contentOffset.x / scrollView.bounds.size.width;
-    
-    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:0];
-
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+//{
+//    NSInteger item = scrollView.contentOffset.x / scrollView.bounds.size.width;
+//
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:0];
+//
+//}
 
 #pragma mark - ZGPhotoCycleCellDelegate
 - (void)photoCycleCellImageViewDidTap
 {
     self.navigationController.navigationBar.hidden = !self.navigationController.navigationBar.hidden;
-    self.bottomBarView.hidden = !self.bottomBarView.hidden;
+    self.bottomView.hidden = !self.bottomView.hidden;
 }
 
 - (BOOL)prefersStatusBarHidden
@@ -231,18 +240,29 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     return YES;
 }
 
+#pragma mark - ZGBrowserBottomViewDelegate
+- (void)browserBottomViewDidSaveBtn:(ZGBrowserBottomView *)bottomView
+{
+    [self dismiss];
+}
+
 #pragma mark - refreshBottomBarView
 - (void)refreshBottomBarView
 {
-    
-//    CGFloat sendButtonWidth = [[self.sendButton titleForState:UIControlStateNormal] sizeWithAttributes:@{NSFontAttributeName :self.sendButton.titleLabel.font}].width + 20;
-//    self.sendButton.frame = CGRectMake(self.view.bounds.size.width - sendButtonWidth, (self.bottomBarView.bounds.size.height - 22) / 2.0, sendButtonWidth, self.sendButton.bounds.size.height);
-    
+    ;
 }
 
 - (void)showAlertMessage:(NSString *)message view:(UIView *)view
 {
     [ZGProgressHUD showInView:view message:message mode:ZGProgressHUDModeToast];
+}
+
+#pragma mark - setter
+- (void)setPhotoArray:(NSArray<ZGPhotoModel *> *)photoArray
+{
+    _photoArray = photoArray;
+    
+    [self.collectionView reloadData];
 }
 
 @end

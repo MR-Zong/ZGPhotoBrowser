@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E2B2838883D4E48211487CBD /* libPods-ZGPhotoBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0014BDD693B0D31CE6E1A681 /* libPods-ZGPhotoBrowser.a */; };
+		EF30F5381FA5C170003CC9A6 /* ZGBrowserBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = EF30F5371FA5C170003CC9A6 /* ZGBrowserBottomView.m */; };
 		EF64347D1FA57C6900AC4B52 /* ZGProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */; };
 		EF6B9EEE1FA56A48000258EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9EED1FA56A48000258EB /* AppDelegate.m */; };
 		EF6B9EF11FA56A48000258EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9EF01FA56A48000258EB /* ViewController.m */; };
@@ -42,6 +43,9 @@
 		0014BDD693B0D31CE6E1A681 /* libPods-ZGPhotoBrowser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ZGPhotoBrowser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		27B68E7EA426009A541BECA9 /* Pods-ZGPhotoBrowser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZGPhotoBrowser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZGPhotoBrowser/Pods-ZGPhotoBrowser.debug.xcconfig"; sourceTree = "<group>"; };
 		76461135F561FE5D67851B05 /* Pods-ZGPhotoBrowser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZGPhotoBrowser.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZGPhotoBrowser/Pods-ZGPhotoBrowser.release.xcconfig"; sourceTree = "<group>"; };
+		EF30F5361FA5C170003CC9A6 /* ZGBrowserBottomView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGBrowserBottomView.h; sourceTree = "<group>"; };
+		EF30F5371FA5C170003CC9A6 /* ZGBrowserBottomView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGBrowserBottomView.m; sourceTree = "<group>"; };
+		EF30F5391FA5C2F4003CC9A6 /* ZGColorDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGColorDefine.h; sourceTree = "<group>"; };
 		EF64347B1FA57C6900AC4B52 /* ZGProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZGProgressHUD.m; sourceTree = "<group>"; };
 		EF64347C1FA57C6900AC4B52 /* ZGProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZGProgressHUD.h; sourceTree = "<group>"; };
 		EF6B9EE91FA56A48000258EB /* ZGPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZGPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -195,6 +199,7 @@
 			children = (
 				EF6B9F251FA5718C000258EB /* ZGPhotoModel.h */,
 				EF6B9F261FA5718C000258EB /* ZGPhotoModel.m */,
+				EF30F5391FA5C2F4003CC9A6 /* ZGColorDefine.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +207,8 @@
 		EF6B9F211FA56E8D000258EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				EF30F5361FA5C170003CC9A6 /* ZGBrowserBottomView.h */,
+				EF30F5371FA5C170003CC9A6 /* ZGBrowserBottomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +431,7 @@
 			files = (
 				EF6B9F271FA5718C000258EB /* ZGPhotoModel.m in Sources */,
 				EF6B9EF11FA56A48000258EB /* ViewController.m in Sources */,
+				EF30F5381FA5C170003CC9A6 /* ZGBrowserBottomView.m in Sources */,
 				EF6B9EFC1FA56A48000258EB /* main.m in Sources */,
 				EF6B9F241FA56E9D000258EB /* ZGPhotoBrowser.m in Sources */,
 				EF6B9EEE1FA56A48000258EB /* AppDelegate.m in Sources */,

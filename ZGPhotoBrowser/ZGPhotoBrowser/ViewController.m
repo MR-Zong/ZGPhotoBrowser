@@ -8,9 +8,12 @@
 
 #import "ViewController.h"
 #import <UIImageView+WebCache.h>
+#import "ZGPhotoBrowser.h"
+
 
 @interface ZGTestCell : UICollectionViewCell
 @property (nonatomic, strong) UIImageView *imgView;
+
 @end
 
 @implementation ZGTestCell
@@ -32,6 +35,7 @@
 @interface ViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) ZGPhotoBrowser *photoBrowser;
 
 @end
 
@@ -73,6 +77,25 @@
     
     return cell;
     
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZGPhotoModel *photoModel = [[ZGPhotoModel alloc] init];
+    photoModel.imgUrlString = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509269545368&di=220c095f54c46e1934a08942a8868037&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F201507%2F2015072807.jpg";
+    
+    self.photoBrowser.photoArray = @[photoModel,photoModel,photoModel];
+    [self.photoBrowser showInView:self.view];
+    
+}
+
+#pragma mark -getter
+- (ZGPhotoBrowser *)photoBrowser
+{
+    if (!_photoBrowser) {
+        _photoBrowser = [[ZGPhotoBrowser alloc] init];
+    }
+    return _photoBrowser;
 }
 
 
