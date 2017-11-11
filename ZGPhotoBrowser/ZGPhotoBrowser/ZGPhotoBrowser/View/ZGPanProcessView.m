@@ -46,17 +46,18 @@ CGFloat scaleBasePanProcessValue = 800.0;
     self.scaleProcessPrecent = self.scaleProcessValue / scaleBasePanProcessValue;
 //    NSLog(@"%f,%f",self.alphaProcessPrecent,self.scaleProcessPrecent);
     
+    
+    // 缩放
+    self.imgView.transform = CGAffineTransformMakeScale(self.scaleProcessPrecent, self.scaleProcessPrecent);
+
+    // 透明
+    self.maskView.alpha = self.alphaProcessPrecent;
+    
     // 跟随手指移动
     CGPoint center =  self.imgView.center;
     center.x += p.x;
     center.y += p.y;
     self.imgView.center = center;
-    
-    // 缩放
-    self.imgView.transform = CGAffineTransformMakeScale(self.scaleProcessPrecent, self.scaleProcessPrecent);
-    // 透明
-    self.maskView.alpha = self.alphaProcessPrecent;
-    
 }
 
 
@@ -64,8 +65,8 @@ CGFloat scaleBasePanProcessValue = 800.0;
 {
     self.alphaProcessValue = alphaBasePanProcessValue;
     self.scaleProcessValue = scaleBasePanProcessValue;
-    self.imgView.transform = CGAffineTransformIdentity;
-    self.imgView.frame = self.bounds;
+//    self.imgView.transform = CGAffineTransformIdentity;
+//    self.imgView.frame = self.bounds;
     self.maskView.alpha = 1;
 }
 

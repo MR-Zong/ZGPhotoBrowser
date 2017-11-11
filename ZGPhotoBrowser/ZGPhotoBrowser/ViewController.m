@@ -23,6 +23,7 @@
     if (self = [super initWithFrame:frame]) {
         
         _imgView = [[UIImageView alloc] initWithFrame:self.contentView.bounds];
+        _imgView.contentMode = UIViewContentModeScaleAspectFit;
         [self.contentView addSubview:_imgView];
     }
     return self;
@@ -86,7 +87,7 @@
     ZGTestCell *cell = (ZGTestCell *)[collectionView cellForItemAtIndexPath:indexPath];
     photoModel.img = cell.imgView.image;
     self.photoBrowser.photoArray = @[photoModel,photoModel,photoModel,photoModel,photoModel];
-    [self.photoBrowser showInViewController:self view:cell modelAtIndex:0];
+    [self.photoBrowser showInView:collectionView controller:self fromView:cell modelAtIndex:0];
     
 }
 

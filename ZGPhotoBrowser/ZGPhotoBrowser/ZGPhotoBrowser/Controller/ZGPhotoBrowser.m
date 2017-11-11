@@ -19,7 +19,7 @@
 
 @property (strong, nonatomic) ZGPanProcessView *panProcessView;
 @property (nonatomic, assign) BOOL shouldPan;
-@property (nonatomic, weak) UIView *fromView;
+@property (nonatomic, assign) CGRect fromRect;
 
 @property (strong, nonatomic) ZGBrowserBottomView *bottomView;
 
@@ -110,15 +110,16 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
         
 }
 
+
 #pragma mark - showInView
-- (void)showInViewController:(UIViewController *)vc view:(UIView *)view modelAtIndex:(NSInteger)index
+- (void)showInView:(UIView *)view controller:(UIViewController *)vc fromView:(UIView *)fromView modelAtIndex:(NSInteger)index
 {
-    self.fromView  = view;
+    self.fromRect  = [fromView convertRect:fromView.bounds toView:vc.view];
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     [vc.view addSubview:self.view];
     [vc addChildViewController:self];
     
-    CGRect fromFrame = view.frame;
+    CGRect fromFrame = self.fromRect;
     CGRect toFrame = self.panProcessView.bounds;
     ZGPhotoModel *model = self.photoArray[index];
     self.panProcessView.imgView.image = model.img;
@@ -141,12 +142,12 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
         // panView.imageView 要动画过度
         [UIView animateWithDuration:0.25 animations:^{
             self.panProcessView.imgView.transform = CGAffineTransformIdentity;
-            self.panProcessView.imgView.frame = self.fromView.frame;
+            self.panProcessView.imgView.frame = self.fromRect;
         } completion:^(BOOL finished) {
+//            for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+//                ges.enabled = YES;
+//            }
             [self reset];
-            for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-                ges.enabled = YES;
-            }
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
         }];
