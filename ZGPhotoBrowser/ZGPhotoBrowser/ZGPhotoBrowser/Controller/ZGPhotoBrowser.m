@@ -8,90 +8,22 @@
 
 #import "ZGPhotoBrowser.h"
 #import "ZGProgressHUD.h"
-#import <UIImageView+WebCache.h>
 #import "ZGBrowserBottomView.h"
-
-@interface ZGPhotoCell () <UIScrollViewDelegate>
-
-@end
-
-@implementation ZGPhotoCell
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    if (self = [super initWithFrame:frame]) {
-        
-        UIScrollView *scrollView = [[UIScrollView alloc] init];
-        self.scrollView = scrollView;
-        scrollView.delegate = self;
-        scrollView.maximumZoomScale = 2.0;
-        scrollView.minimumZoomScale = 1.0;
-        scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        [self.contentView  addSubview:scrollView];
-        
-        UIImageView *imageView = [[UIImageView alloc] init];
-        self.imageView = imageView;
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [scrollView addSubview:imageView];
-        imageView.userInteractionEnabled = YES;
-        
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewDidTap:)];
-        [imageView addGestureRecognizer:tapGesture];
-    }
-    
-    return self;
-}
+#import "ZGCollectionViewPBLayout.h"
+#import "ZGPanProcessView.h"
 
 
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.scrollView.frame = self.bounds;
-    self.imageView.frame = self.scrollView.bounds;
-}
-
--(void)setModel:(ZGPhotoModel *)model
-{
-    _model = model;
-    
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrlString]];
-}
-
-
-#pragma mark - UIScrollViewDelegate
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
-    return self.imageView;
-}
-
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView
-{
-    CGFloat xcenter = scrollView.center.x , ycenter = scrollView.center.y;
-    
-    xcenter = scrollView.contentSize.width > scrollView.frame.size.width ? scrollView.contentSize.width/2 : xcenter;
-    
-    ycenter = scrollView.contentSize.height > scrollView.frame.size.height ? scrollView.contentSize.height/2 : ycenter;
-    [self.imageView setCenter:CGPointMake(xcenter, ycenter)];
-}
-
-#pragma mark - imageViewDidTap
-- (void)imageViewDidTap:(UITapGestureRecognizer *)tapGesture
-{
-    if (self.delegate && [self.delegate respondsToSelector:@selector(photoCellImageViewDidTap)]) {
-        [self.delegate photoCellImageViewDidTap];
-    }
-    
-}
-
-@end
-
-#pragma mark - ----------------------------------
-
-@interface ZGPhotoBrowser () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZGPhotoCellDelegate,ZGBrowserBottomViewDelegate>
+@interface ZGPhotoBrowser () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZGPhotoCellDelegate,ZGBrowserBottomViewDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) UICollectionView *collectionView;
 
+@property (strong, nonatomic) ZGPanProcessView *panProcessView;
+@property (nonatomic, assign) BOOL shouldPan;
+@property (nonatomic, weak) UIView *fromView;
+
 @property (strong, nonatomic) ZGBrowserBottomView *bottomView;
+
+@property (assign, nonatomic) CGPoint oldContentOffset;
 
 @end
 
@@ -118,7 +50,10 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (void)initialize
 {
-    ;
+    UIPanGestureRecognizer *pan  = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
+    pan.delegate = self;
+    [self.view addGestureRecognizer:pan];
+
 }
 
 - (void)setupBackBarButton
@@ -139,9 +74,13 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (void)setupCollectionView
 {
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:flowLayout];
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
+    layout.minimumInteritemSpacing = 0.0;
+    layout.minimumLineSpacing = 0;
+    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layout];
     self.collectionView = collectionView;
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.dataSource = self;
@@ -149,7 +88,15 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     collectionView.pagingEnabled = YES;
     [collectionView registerClass:[ZGPhotoCell class] forCellWithReuseIdentifier:kPhotoCellID];
     [self.view addSubview:collectionView];
-    [collectionView scrollToItemAtIndexPath:self.indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    
+    
+    //    [collectionView scrollToItemAtIndexPath:self.indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    
+    
+    // panProcessView
+    _panProcessView = [[ZGPanProcessView alloc] initWithFrame:self.view.bounds];
+    _panProcessView.hidden = YES;
+    [self.view addSubview:_panProcessView];
     
 }
 
@@ -163,15 +110,45 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 }
 
 #pragma mark - showInView
-- (void)showInView:(UIView *)view
+- (void)showInViewController:(UIViewController *)vc view:(UIView *)view modelAtIndex:(NSInteger)index
 {
-    [view addSubview:self.view];
+    self.fromView  = view;
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+    [vc.view addSubview:self.view];
+    [vc addChildViewController:self];
+    
+    CGRect fromFrame = view.frame;
+    CGRect toFrame = self.panProcessView.bounds;
+    ZGPhotoModel *model = self.photoArray[index];
+    self.panProcessView.imgView.image = model.img;
+    self.panProcessView.imgView.frame = fromFrame;
+    self.panProcessView.hidden = NO;
+    
+    
+    [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:0.8 initialSpringVelocity:3 options:UIViewAnimationOptionCurveLinear animations:^{
+        self.panProcessView.imgView.frame = toFrame;
+    } completion:^(BOOL finished) {
+        self.panProcessView.hidden = YES;
+    }];
+    
 }
 
 - (void)dismiss
 {
     if (self.view.superview) {
-        [self.view removeFromSuperview];
+        
+        // panView.imageView 要动画过度
+        [UIView animateWithDuration:0.25 animations:^{
+            self.panProcessView.imgView.transform = CGAffineTransformIdentity;
+            self.panProcessView.imgView.frame = self.fromView.frame;
+        } completion:^(BOOL finished) {
+            [self reset];
+            for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+                ges.enabled = YES;
+            }
+            [self.view removeFromSuperview];
+            [self removeFromParentViewController];
+        }];
     }
 }
 
@@ -190,6 +167,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+//    NSLog(@"cellForRow");
     ZGPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoCellID forIndexPath:indexPath];
     
     cell.scrollView.zoomScale = 1.0;
@@ -197,25 +175,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     cell.model = self.photoArray[indexPath.item];
     
     return cell;
-    
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-    return CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height);
-}
-
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0;
-}
-
-
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
-{
-    return 0;
 }
 
 
@@ -263,6 +222,91 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     _photoArray = photoArray;
     
     [self.collectionView reloadData];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
+//{
+//    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
+//        NSLog(@"%@,%@",gestureRecognizer,otherGestureRecognizer);
+//        return YES;
+//
+//    }
+//    return NO;
+//}
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
+//{
+//    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
+//        NSLog(@"%@,%@",gestureRecognizer,otherGestureRecognizer);
+//        return YES;
+//
+//    }
+//    return NO;
+//}
+
+
+- (void)didPan:(UIPanGestureRecognizer *)pan
+{
+    CGPoint p = [pan translationInView:self.view];
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"%@",NSStringFromCGPoint(p));
+        self.shouldPan = (p.x == 0);
+        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+            ges.enabled = !self.shouldPan;
+        }
+        
+    }else if (pan.state == UIGestureRecognizerStateChanged) {
+        if (self.shouldPan == YES) {
+            [pan setTranslation:CGPointZero inView:self.view];
+//            NSLog(@"%@",NSStringFromCGPoint(p));
+            
+            self.collectionView.hidden = YES;
+            self.bottomView.hidden = YES;
+            self.panProcessView.hidden = NO;
+            ZGPhotoCell *cell = (ZGPhotoCell *)[self.collectionView cellForItemAtIndexPath:[self.collectionView indexPathsForVisibleItems].firstObject];
+            self.panProcessView.imgView.image = cell.imageView.image;
+
+            [self.panProcessView setProcessPoint:p];
+            
+        }
+        
+    }else if (pan.state == UIGestureRecognizerStateEnded) {
+        if (self.shouldPan == YES) {
+            
+            if (self.panProcessView.alphaProcessPrecent < 0.1) {
+                [self dismiss];
+            }else {
+                [UIView animateWithDuration:0.25 animations:^{
+                    self.panProcessView.maskView.alpha = 1;
+                    self.panProcessView.imgView.transform = CGAffineTransformIdentity;
+                    self.panProcessView.imgView.frame = self.panProcessView.bounds;
+                } completion:^(BOOL finished) {
+                    [self reset];
+                    for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+                        ges.enabled = YES;
+                    }
+                }];
+            }
+        }
+    }else {
+        self.panProcessView.hidden = YES;
+        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+            ges.enabled = YES;
+        }
+    }
+}
+
+- (void)reset
+{
+    [self.panProcessView reset];
+    self.collectionView.hidden = NO;
+    self.bottomView.hidden = NO;
+    self.panProcessView.hidden = YES;
 }
 
 @end

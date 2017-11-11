@@ -20,6 +20,10 @@
 		EF6B9F111FA56A48000258EB /* ZGPhotoBrowserUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9F101FA56A48000258EB /* ZGPhotoBrowserUITests.m */; };
 		EF6B9F241FA56E9D000258EB /* ZGPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9F231FA56E9D000258EB /* ZGPhotoBrowser.m */; };
 		EF6B9F271FA5718C000258EB /* ZGPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9F261FA5718C000258EB /* ZGPhotoModel.m */; };
+		EFE3CDB21FA820B200237547 /* ZGCollectionViewPBLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE3CDB11FA820B200237547 /* ZGCollectionViewPBLayout.m */; };
+		EFF0E8901FB53F91001FE76C /* ZGPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF0E88F1FB53F91001FE76C /* ZGPhotoCell.m */; };
+		EFF0E8931FB545C0001FE76C /* ZGScrollViewPan.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF0E8921FB545C0001FE76C /* ZGScrollViewPan.m */; };
+		EFF0E8961FB591C0001FE76C /* ZGPanProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF0E8951FB591C0001FE76C /* ZGPanProcessView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,14 @@
 		EF6B9F2F1FA579B9000258EB /* UIColor+DHUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DHUtil.m"; sourceTree = "<group>"; };
 		EF6B9F301FA579B9000258EB /* UIImage+DHUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+DHUtil.h"; sourceTree = "<group>"; };
 		EF6B9F311FA579B9000258EB /* UIImage+DHUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DHUtil.m"; sourceTree = "<group>"; };
+		EFE3CDB01FA820B200237547 /* ZGCollectionViewPBLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGCollectionViewPBLayout.h; sourceTree = "<group>"; };
+		EFE3CDB11FA820B200237547 /* ZGCollectionViewPBLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGCollectionViewPBLayout.m; sourceTree = "<group>"; };
+		EFF0E88E1FB53F91001FE76C /* ZGPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPhotoCell.h; sourceTree = "<group>"; };
+		EFF0E88F1FB53F91001FE76C /* ZGPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPhotoCell.m; sourceTree = "<group>"; };
+		EFF0E8911FB545C0001FE76C /* ZGScrollViewPan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGScrollViewPan.h; sourceTree = "<group>"; };
+		EFF0E8921FB545C0001FE76C /* ZGScrollViewPan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGScrollViewPan.m; sourceTree = "<group>"; };
+		EFF0E8941FB591C0001FE76C /* ZGPanProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPanProcessView.h; sourceTree = "<group>"; };
+		EFF0E8951FB591C0001FE76C /* ZGPanProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPanProcessView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +212,8 @@
 				EF6B9F251FA5718C000258EB /* ZGPhotoModel.h */,
 				EF6B9F261FA5718C000258EB /* ZGPhotoModel.m */,
 				EF30F5391FA5C2F4003CC9A6 /* ZGColorDefine.h */,
+				EFE3CDB01FA820B200237547 /* ZGCollectionViewPBLayout.h */,
+				EFE3CDB11FA820B200237547 /* ZGCollectionViewPBLayout.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -209,6 +223,12 @@
 			children = (
 				EF30F5361FA5C170003CC9A6 /* ZGBrowserBottomView.h */,
 				EF30F5371FA5C170003CC9A6 /* ZGBrowserBottomView.m */,
+				EFF0E88E1FB53F91001FE76C /* ZGPhotoCell.h */,
+				EFF0E88F1FB53F91001FE76C /* ZGPhotoCell.m */,
+				EFF0E8911FB545C0001FE76C /* ZGScrollViewPan.h */,
+				EFF0E8921FB545C0001FE76C /* ZGScrollViewPan.m */,
+				EFF0E8941FB591C0001FE76C /* ZGPanProcessView.h */,
+				EFF0E8951FB591C0001FE76C /* ZGPanProcessView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,7 +332,7 @@
 				TargetAttributes = {
 					EF6B9EE81FA56A48000258EB = {
 						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					EF6B9F001FA56A48000258EB = {
 						CreatedOnToolsVersion = 9.0;
@@ -430,10 +450,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF6B9F271FA5718C000258EB /* ZGPhotoModel.m in Sources */,
+				EFF0E8901FB53F91001FE76C /* ZGPhotoCell.m in Sources */,
 				EF6B9EF11FA56A48000258EB /* ViewController.m in Sources */,
 				EF30F5381FA5C170003CC9A6 /* ZGBrowserBottomView.m in Sources */,
+				EFF0E8961FB591C0001FE76C /* ZGPanProcessView.m in Sources */,
+				EFF0E8931FB545C0001FE76C /* ZGScrollViewPan.m in Sources */,
 				EF6B9EFC1FA56A48000258EB /* main.m in Sources */,
 				EF6B9F241FA56E9D000258EB /* ZGPhotoBrowser.m in Sources */,
+				EFE3CDB21FA820B200237547 /* ZGCollectionViewPBLayout.m in Sources */,
 				EF6B9EEE1FA56A48000258EB /* AppDelegate.m in Sources */,
 				EF64347D1FA57C6900AC4B52 /* ZGProgressHUD.m in Sources */,
 			);
@@ -599,12 +623,16 @@
 			baseConfigurationReference = 27B68E7EA426009A541BECA9 /* Pods-ZGPhotoBrowser.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: zongGen xu (89MUAYM944)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 6BVF5F2U9J;
 				INFOPLIST_FILE = ZGPhotoBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zongGen.ZGPhotoBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zongGen.calendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "244eb652-d567-415f-b8f6-9e462b6051ed";
+				PROVISIONING_PROFILE_SPECIFIER = ZGCalendar;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -614,12 +642,15 @@
 			baseConfigurationReference = 76461135F561FE5D67851B05 /* Pods-ZGPhotoBrowser.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer: zongGen xu (89MUAYM944)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = ZGPhotoBrowser/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zongGen.ZGPhotoBrowser;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zongGen.calendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -83,9 +83,10 @@
 {
     ZGPhotoModel *photoModel = [[ZGPhotoModel alloc] init];
     photoModel.imgUrlString = @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1509269545368&di=220c095f54c46e1934a08942a8868037&imgtype=0&src=http%3A%2F%2Fwww.pp3.cn%2Fuploads%2F201507%2F2015072807.jpg";
-    
-    self.photoBrowser.photoArray = @[photoModel,photoModel,photoModel];
-    [self.photoBrowser showInView:self.view];
+    ZGTestCell *cell = (ZGTestCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    photoModel.img = cell.imgView.image;
+    self.photoBrowser.photoArray = @[photoModel,photoModel,photoModel,photoModel,photoModel];
+    [self.photoBrowser showInViewController:self view:cell modelAtIndex:0];
     
 }
 

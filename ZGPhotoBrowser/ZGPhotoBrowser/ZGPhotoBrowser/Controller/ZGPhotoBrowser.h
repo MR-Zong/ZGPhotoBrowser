@@ -7,30 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ZGPhotoModel.h"
+#import "ZGPhotoCell.h"
 #import "ZGColorDefine.h"
-
-
-
-@protocol ZGPhotoCellDelegate  <NSObject>
-
-@optional
-- (void)photoCellImageViewDidTap;
-
-@end
-
-
-@interface ZGPhotoCell : UICollectionViewCell
-
-@property (weak, nonatomic) UIImageView *imageView;
-@property (weak, nonatomic) UIScrollView *scrollView;
-@property (nonatomic, strong) ZGPhotoModel *model;
-@property (weak, nonatomic) id <ZGPhotoCellDelegate> delegate;
-
-@end
-
-
-#pragma mark - - -- - - - - - - -- - - - -  - -
 
 @class ZGPhotoModel;
 
@@ -40,7 +18,7 @@
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
-- (void)showInView:(UIView *)view;
+- (void)showInViewController:(UIViewController *)vc view:(UIView *)view modelAtIndex:(NSInteger)index;
 - (void)dismiss;
 
 
