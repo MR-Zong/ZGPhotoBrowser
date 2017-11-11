@@ -86,6 +86,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     collectionView.dataSource = self;
     collectionView.delegate = self;
     collectionView.pagingEnabled = YES;
+    collectionView.alwaysBounceHorizontal = YES;
     [collectionView registerClass:[ZGPhotoCell class] forCellWithReuseIdentifier:kPhotoCellID];
     [self.view addSubview:collectionView];
     
@@ -253,12 +254,24 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 - (void)didPan:(UIPanGestureRecognizer *)pan
 {
     CGPoint p = [pan translationInView:self.view];
+    CGPoint v = [pan velocityInView:self.view];
     if (pan.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"%@",NSStringFromCGPoint(p));
-        self.shouldPan = (p.x == 0);
-        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-            ges.enabled = !self.shouldPan;
+//        NSLog(@"%@",NSStringFromCGPoint(p));
+//        NSLog(@"%@",NSStringFromCGPoint(v));
+        if (p.x != 0) {
+            self.shouldPan = NO;
+        }else {
+            
+            if (fabs(v.x) < 100) {
+                self.shouldPan = YES;
+            }else {
+                self.shouldPan = NO;
+            }
         }
+//        self.shouldPan = (v.x == 0);
+//        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+//            ges.enabled = !self.shouldPan;
+//        }
         
     }else if (pan.state == UIGestureRecognizerStateChanged) {
         if (self.shouldPan == YES) {
@@ -287,17 +300,17 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
                     self.panProcessView.imgView.frame = self.panProcessView.bounds;
                 } completion:^(BOOL finished) {
                     [self reset];
-                    for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-                        ges.enabled = YES;
-                    }
+//                    for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+//                        ges.enabled = YES;
+//                    }
                 }];
             }
         }
     }else {
         self.panProcessView.hidden = YES;
-        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-            ges.enabled = YES;
-        }
+//        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+//            ges.enabled = YES;
+//        }
     }
 }
 
