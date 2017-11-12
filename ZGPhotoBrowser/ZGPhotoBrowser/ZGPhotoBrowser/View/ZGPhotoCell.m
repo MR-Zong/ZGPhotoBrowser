@@ -19,7 +19,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         
-        ZGScrollViewPan *scrollView = [[ZGScrollViewPan alloc] init];
+        UIScrollView *scrollView = [[UIScrollView alloc] init];
         self.scrollView = scrollView;
         scrollView.delegate = self;
         scrollView.maximumZoomScale = 2.0;

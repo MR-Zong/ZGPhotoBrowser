@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "ZGPhotoModel.h"
 #import <UIImageView+WebCache.h>
-#import "ZGScrollViewPan.h"
 
 
 @protocol ZGPhotoCellDelegate  <NSObject>
@@ -22,7 +21,7 @@
 @interface ZGPhotoCell : UICollectionViewCell
 
 @property (weak, nonatomic) UIImageView *imageView;
-@property (weak, nonatomic) ZGScrollViewPan *scrollView;
+@property (weak, nonatomic) UIScrollView *scrollView;
 @property (nonatomic, strong) ZGPhotoModel *model;
 @property (weak, nonatomic) id <ZGPhotoCellDelegate> delegate;
 

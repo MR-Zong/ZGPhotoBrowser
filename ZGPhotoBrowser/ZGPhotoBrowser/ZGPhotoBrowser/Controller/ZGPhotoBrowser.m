@@ -20,25 +20,20 @@
 @property (strong, nonatomic) ZGPanProcessView *panProcessView;
 @property (nonatomic, assign) BOOL shouldPan;
 @property (nonatomic, assign) CGRect fromRect;
-
 @property (strong, nonatomic) ZGBrowserBottomView *bottomView;
-
 @property (assign, nonatomic) CGPoint oldContentOffset;
 
 @end
 
+static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 @implementation ZGPhotoBrowser
-
-
-static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupViews];
 }
-
 
 - (void)setupViews
 {
@@ -90,17 +85,12 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     [collectionView registerClass:[ZGPhotoCell class] forCellWithReuseIdentifier:kPhotoCellID];
     [self.view addSubview:collectionView];
     
-    
-    //    [collectionView scrollToItemAtIndexPath:self.indexPath atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
-    
-    
     // panProcessView
     _panProcessView = [[ZGPanProcessView alloc] initWithFrame:self.view.bounds];
     _panProcessView.hidden = YES;
     [self.view addSubview:_panProcessView];
     
 }
-
 
 - (void)setupBottomView
 {
@@ -109,7 +99,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     [self.view addSubview:_bottomView];
         
 }
-
 
 #pragma mark - showInView
 - (void)showInView:(UIView *)view controller:(UIViewController *)vc fromView:(UIView *)fromView modelAtIndex:(NSInteger)index
@@ -156,6 +145,15 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     }
 }
 
+- (void)disappear
+{
+    if (self.view.superview) {
+        [self reset];
+        [self.view removeFromSuperview];
+        [self removeFromParentViewController];
+    }
+}
+
 
 #pragma mark - UICollectionViewDataSource,UICollectionViewDelegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -179,16 +177,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     
     return cell;
 }
-
-
-#pragma mark - UIScrollViewDelegate
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-//{
-//    NSInteger item = scrollView.contentOffset.x / scrollView.bounds.size.width;
-//
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:0];
-//
-//}
 
 #pragma mark - ZGPhotoCycleCellDelegate
 - (void)photoCycleCellImageViewDidTap
@@ -219,7 +207,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
 {
     if (error) {
-        
         NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
     }else {
         [ZGProgressHUD showInView:self.view message:@"保存成功" mode:ZGProgressHUDModeToast];
@@ -228,11 +215,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 
 #pragma mark - refreshBottomBarView
-- (void)refreshBottomBarView
-{
-    ;
-}
-
 - (void)showAlertMessage:(NSString *)message view:(UIView *)view
 {
     [ZGProgressHUD showInView:view message:message mode:ZGProgressHUDModeToast];

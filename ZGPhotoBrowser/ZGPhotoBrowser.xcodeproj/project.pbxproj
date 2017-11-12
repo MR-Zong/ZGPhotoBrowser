@@ -22,7 +22,6 @@
 		EF6B9F271FA5718C000258EB /* ZGPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6B9F261FA5718C000258EB /* ZGPhotoModel.m */; };
 		EFE3CDB21FA820B200237547 /* ZGCollectionViewPBLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EFE3CDB11FA820B200237547 /* ZGCollectionViewPBLayout.m */; };
 		EFF0E8901FB53F91001FE76C /* ZGPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF0E88F1FB53F91001FE76C /* ZGPhotoCell.m */; };
-		EFF0E8931FB545C0001FE76C /* ZGScrollViewPan.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF0E8921FB545C0001FE76C /* ZGScrollViewPan.m */; };
 		EFF0E8961FB591C0001FE76C /* ZGPanProcessView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF0E8951FB591C0001FE76C /* ZGPanProcessView.m */; };
 /* End PBXBuildFile section */
 
@@ -80,8 +79,6 @@
 		EFE3CDB11FA820B200237547 /* ZGCollectionViewPBLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGCollectionViewPBLayout.m; sourceTree = "<group>"; };
 		EFF0E88E1FB53F91001FE76C /* ZGPhotoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPhotoCell.h; sourceTree = "<group>"; };
 		EFF0E88F1FB53F91001FE76C /* ZGPhotoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPhotoCell.m; sourceTree = "<group>"; };
-		EFF0E8911FB545C0001FE76C /* ZGScrollViewPan.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGScrollViewPan.h; sourceTree = "<group>"; };
-		EFF0E8921FB545C0001FE76C /* ZGScrollViewPan.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGScrollViewPan.m; sourceTree = "<group>"; };
 		EFF0E8941FB591C0001FE76C /* ZGPanProcessView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZGPanProcessView.h; sourceTree = "<group>"; };
 		EFF0E8951FB591C0001FE76C /* ZGPanProcessView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZGPanProcessView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,8 +222,6 @@
 				EF30F5371FA5C170003CC9A6 /* ZGBrowserBottomView.m */,
 				EFF0E88E1FB53F91001FE76C /* ZGPhotoCell.h */,
 				EFF0E88F1FB53F91001FE76C /* ZGPhotoCell.m */,
-				EFF0E8911FB545C0001FE76C /* ZGScrollViewPan.h */,
-				EFF0E8921FB545C0001FE76C /* ZGScrollViewPan.m */,
 				EFF0E8941FB591C0001FE76C /* ZGPanProcessView.h */,
 				EFF0E8951FB591C0001FE76C /* ZGPanProcessView.m */,
 			);
@@ -454,7 +449,6 @@
 				EF6B9EF11FA56A48000258EB /* ViewController.m in Sources */,
 				EF30F5381FA5C170003CC9A6 /* ZGBrowserBottomView.m in Sources */,
 				EFF0E8961FB591C0001FE76C /* ZGPanProcessView.m in Sources */,
-				EFF0E8931FB545C0001FE76C /* ZGScrollViewPan.m in Sources */,
 				EF6B9EFC1FA56A48000258EB /* main.m in Sources */,
 				EF6B9F241FA56E9D000258EB /* ZGPhotoBrowser.m in Sources */,
 				EFE3CDB21FA820B200237547 /* ZGCollectionViewPBLayout.m in Sources */,

@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSIndexPath *indexPath;
 
 - (void)showInView:(UIView *)view controller:(UIViewController *)vc fromView:(UIView *)fromView modelAtIndex:(NSInteger)index;
-- (void)dismiss;
+- (void)disappear;
 
 
 
