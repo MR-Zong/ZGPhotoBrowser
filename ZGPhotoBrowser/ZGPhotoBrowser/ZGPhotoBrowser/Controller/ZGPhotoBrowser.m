@@ -140,17 +140,19 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     if (self.view.superview) {
         
         // panView.imageView 要动画过度
-        [UIView animateWithDuration:0.25 animations:^{
+        [UIView animateWithDuration:0.25 delay:0 usingSpringWithDamping:1 initialSpringVelocity:1 options:UIViewAnimationOptionCurveLinear animations:^{
             self.panProcessView.imgView.transform = CGAffineTransformIdentity;
             self.panProcessView.imgView.frame = self.fromRect;
         } completion:^(BOOL finished) {
-//            for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-//                ges.enabled = YES;
-//            }
+            
+            //            for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
+            //                ges.enabled = YES;
+            //            }
             [self reset];
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
         }];
+
     }
 }
 
@@ -169,7 +171,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"cellForRow");
     ZGPhotoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPhotoCellID forIndexPath:indexPath];
     
     cell.scrollView.zoomScale = 1.0;
@@ -204,8 +205,27 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 #pragma mark - ZGBrowserBottomViewDelegate
 - (void)browserBottomViewDidSaveBtn:(ZGBrowserBottomView *)bottomView
 {
-    [self dismiss];
+    NSIndexPath *indexPath = [self.collectionView indexPathsForVisibleItems].firstObject;
+    ZGPhotoCell *cell = (ZGPhotoCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    UIImage *img = cell.imageView.image;
+    [self saveImageToAlbum:img];
 }
+
+- (void)saveImageToAlbum:(UIImage *)image
+{
+    UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), (__bridge void *)self);
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        
+        NSLog(@"image = %@, error = %@, contextInfo = %@", image, error, contextInfo);
+    }else {
+        [ZGProgressHUD showInView:self.view message:@"保存成功" mode:ZGProgressHUDModeToast];
+    }
+}
+
 
 #pragma mark - refreshBottomBarView
 - (void)refreshBottomBarView
@@ -292,7 +312,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     }else if (pan.state == UIGestureRecognizerStateEnded) {
         if (self.shouldPan == YES) {
             
-            if (self.panProcessView.alphaProcessPrecent < 0.1) {
+            if (self.panProcessView.alphaProcessPrecent < 0.2) {
                 [self dismiss];
             }else {
                 [UIView animateWithDuration:0.25 animations:^{

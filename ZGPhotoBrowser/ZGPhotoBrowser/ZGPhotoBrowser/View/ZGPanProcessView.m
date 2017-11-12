@@ -7,7 +7,7 @@
 //
 
 #import "ZGPanProcessView.h"
-CGFloat alphaBasePanProcessValue = 300.0;
+CGFloat alphaBasePanProcessValue = 360.0;
 CGFloat scaleBasePanProcessValue = 800.0;
 
 @implementation ZGPanProcessView
