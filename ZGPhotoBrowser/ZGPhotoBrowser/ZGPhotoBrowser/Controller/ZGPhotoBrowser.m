@@ -12,6 +12,8 @@
 #import "ZGCollectionViewPBLayout.h"
 #import "ZGPanProcessView.h"
 
+#import "ZGCollectionViewFlowLayout.h"
+
 
 @interface ZGPhotoBrowser () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZGPhotoCellDelegate,ZGBrowserBottomViewDelegate,UIGestureRecognizerDelegate>
 
@@ -22,6 +24,8 @@
 @property (nonatomic, assign) CGRect fromRect;
 @property (strong, nonatomic) ZGBrowserBottomView *bottomView;
 @property (assign, nonatomic) CGPoint oldContentOffset;
+
+@property (nonatomic, weak) ZGCollectionViewFlowLayout *flowLayout;
 
 @end
 
@@ -69,18 +73,21 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (void)setupCollectionView
 {
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
+    ZGCollectionViewFlowLayout *layout = [[ZGCollectionViewFlowLayout alloc] init];
+    self.flowLayout = layout;
+    layout.itemSize = CGSizeMake(self.view.bounds.size.width , self.view.bounds.size.height);
     layout.minimumInteritemSpacing = 0.0;
-    layout.minimumLineSpacing = 0;
+    layout.minimumLineSpacing = 30.0;
+    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 30);
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) collectionViewLayout:layout];
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width + 30, self.view.bounds.size.height) collectionViewLayout:layout];
     self.collectionView = collectionView;
     collectionView.showsHorizontalScrollIndicator = NO;
     collectionView.dataSource = self;
     collectionView.delegate = self;
     collectionView.pagingEnabled = YES;
+//    collectionView.decelerationRate = 0.5;
     collectionView.alwaysBounceHorizontal = YES;
     [collectionView registerClass:[ZGPhotoCell class] forCellWithReuseIdentifier:kPhotoCellID];
     [self.view addSubview:collectionView];
@@ -156,6 +163,16 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 
 #pragma mark - UICollectionViewDataSource,UICollectionViewDelegate
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+//
+//{
+//    if (section == 0) {
+//        return UIEdgeInsetsMake(0, 0, 0, 0);
+//    }else {
+//        return UIEdgeInsetsMake(0, 10, 0, 0);
+//    }
+//}
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -178,6 +195,28 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     return cell;
 }
 
+#pragma mark - scrollViewDelegate
+//- (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+//
+//    CGFloat offSetX = targetContentOffset->x; //偏移量
+//
+//    CGFloat itemWidth = self.view.bounds.size.width;   //itemSizem 的宽
+//
+//    //itemSizem的宽度+行间距 = 页码的宽度
+//
+//    NSInteger pageWidth = itemWidth + 10;
+//
+//    //根据偏移量计算 第几页
+//
+//    NSInteger pageNum = (offSetX+pageWidth/2)/pageWidth;
+//
+//    //根据显示的第几页,从而改变偏移量
+//
+//    targetContentOffset->x = pageNum*pageWidth;
+//
+////    NSLog(@"%.1f",targetContentOffset->x);
+//
+//}
 #pragma mark - ZGPhotoCycleCellDelegate
 - (void)photoCycleCellImageViewDidTap
 {

@@ -48,8 +48,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.scrollView.frame = self.bounds;
-    self.scrollView.contentSize = CGSizeMake(self.bounds.size.width, self.bounds.size.height);
+    self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+//    self.scrollView.contentSize = CGSizeMake(self.bounds.size.width , self.bounds.size.height);
     self.imageView.frame = self.scrollView.bounds;
 }
 
