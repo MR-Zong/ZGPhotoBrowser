@@ -270,13 +270,23 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 #pragma mark - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
+    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
+        if([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPinchGestureRecognizer")]){
+            return NO;
+        }
+        
+    }
+
     return YES;
 }
+
 //- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
 //{
 //    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
-//        NSLog(@"%@,%@",gestureRecognizer,otherGestureRecognizer);
-//        return YES;
+//        if([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPinchGestureRecognizer")]){
+////            NSLog(@"%@,%@",gestureRecognizer,otherGestureRecognizer);
+//            return YES;
+//        }
 //
 //    }
 //    return NO;
