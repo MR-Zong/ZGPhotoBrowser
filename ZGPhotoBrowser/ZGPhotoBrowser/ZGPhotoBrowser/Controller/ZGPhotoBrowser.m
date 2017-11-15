@@ -87,7 +87,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     collectionView.dataSource = self;
     collectionView.delegate = self;
     collectionView.pagingEnabled = YES;
-//    collectionView.decelerationRate = 0.5;
     collectionView.alwaysBounceHorizontal = YES;
     [collectionView registerClass:[ZGPhotoCell class] forCellWithReuseIdentifier:kPhotoCellID];
     [self.view addSubview:collectionView];
@@ -140,10 +139,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
             self.panProcessView.imgView.transform = CGAffineTransformIdentity;
             self.panProcessView.imgView.frame = self.fromRect;
         } completion:^(BOOL finished) {
-            
-            //            for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-            //                ges.enabled = YES;
-            //            }
             [self reset];
             [self.view removeFromSuperview];
             [self removeFromParentViewController];
@@ -163,16 +158,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 
 #pragma mark - UICollectionViewDataSource,UICollectionViewDelegate
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
-//
-//{
-//    if (section == 0) {
-//        return UIEdgeInsetsMake(0, 0, 0, 0);
-//    }else {
-//        return UIEdgeInsetsMake(0, 10, 0, 0);
-//    }
-//}
-
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -195,28 +180,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     return cell;
 }
 
-#pragma mark - scrollViewDelegate
-//- (void) scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-//
-//    CGFloat offSetX = targetContentOffset->x; //偏移量
-//
-//    CGFloat itemWidth = self.view.bounds.size.width;   //itemSizem 的宽
-//
-//    //itemSizem的宽度+行间距 = 页码的宽度
-//
-//    NSInteger pageWidth = itemWidth + 10;
-//
-//    //根据偏移量计算 第几页
-//
-//    NSInteger pageNum = (offSetX+pageWidth/2)/pageWidth;
-//
-//    //根据显示的第几页,从而改变偏移量
-//
-//    targetContentOffset->x = pageNum*pageWidth;
-//
-////    NSLog(@"%.1f",targetContentOffset->x);
-//
-//}
 #pragma mark - ZGPhotoCycleCellDelegate
 - (void)photoCycleCellImageViewDidTap
 {
@@ -280,29 +243,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     return YES;
 }
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
-//{
-//    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
-//        if([otherGestureRecognizer isKindOfClass:NSClassFromString(@"UIScrollViewPinchGestureRecognizer")]){
-////            NSLog(@"%@,%@",gestureRecognizer,otherGestureRecognizer);
-//            return YES;
-//        }
-//
-//    }
-//    return NO;
-//}
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldBeRequiredToFailByGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0)
-//{
-//    if([gestureRecognizer isKindOfClass:[UIPanGestureRecognizer class]]){
-//        NSLog(@"%@,%@",gestureRecognizer,otherGestureRecognizer);
-//        return YES;
-//
-//    }
-//    return NO;
-//}
-
-
 - (void)didPan:(UIPanGestureRecognizer *)pan
 {
     CGPoint p = [pan translationInView:self.view];
@@ -311,8 +251,6 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
     ZGPhotoCell *cell = (ZGPhotoCell *)[self.collectionView cellForItemAtIndexPath:[self.collectionView indexPathsForVisibleItems].firstObject];
     
     if (pan.state == UIGestureRecognizerStateBegan) {
-//        NSLog(@"%@",NSStringFromCGPoint(p));
-//        NSLog(@"%@",NSStringFromCGPoint(v));
         
         // 如果 图片有被放大，要回到原来图片大小
         cell.scrollView.zoomScale = 1;
@@ -327,16 +265,10 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
                 self.shouldPan = NO;
             }
         }
-//        self.shouldPan = (v.x == 0);
-//        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-//            ges.enabled = !self.shouldPan;
-//        }
         
     }else if (pan.state == UIGestureRecognizerStateChanged) {
         if (self.shouldPan == YES) {
             [pan setTranslation:CGPointZero inView:self.view];
-//            NSLog(@"%@",NSStringFromCGPoint(p));
-            
             self.collectionView.hidden = YES;
             self.bottomView.hidden = YES;
             self.panProcessView.hidden = NO;
@@ -359,17 +291,11 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
                     self.panProcessView.imgView.frame = self.panProcessView.bounds;
                 } completion:^(BOOL finished) {
                     [self reset];
-//                    for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-//                        ges.enabled = YES;
-//                    }
                 }];
             }
         }
     }else {
         self.panProcessView.hidden = YES;
-//        for (UIGestureRecognizer *ges in self.collectionView.gestureRecognizers) {
-//            ges.enabled = YES;
-//        }
     }
 }
 

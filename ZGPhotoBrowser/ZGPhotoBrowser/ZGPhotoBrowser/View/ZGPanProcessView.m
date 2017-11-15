@@ -38,14 +38,11 @@ CGFloat scaleBasePanProcessValue = 800.0;
     //    }else { // 向上
     //    }
 
-//    NSLog(@"%f,%f",self.alphaProcessValue,self.scaleProcessValue);
     self.alphaProcessValue -= p.y;
     self.scaleProcessValue -= p.y;
     
     self.alphaProcessPrecent = self.alphaProcessValue / alphaBasePanProcessValue;
     self.scaleProcessPrecent = self.scaleProcessValue / scaleBasePanProcessValue;
-//    NSLog(@"%f,%f",self.alphaProcessPrecent,self.scaleProcessPrecent);
-    
     
     // 缩放
     self.imgView.transform = CGAffineTransformMakeScale(self.scaleProcessPrecent, self.scaleProcessPrecent);
@@ -65,8 +62,6 @@ CGFloat scaleBasePanProcessValue = 800.0;
 {
     self.alphaProcessValue = alphaBasePanProcessValue;
     self.scaleProcessValue = scaleBasePanProcessValue;
-//    self.imgView.transform = CGAffineTransformIdentity;
-//    self.imgView.frame = self.bounds;
     self.maskView.alpha = 1;
 }
 
