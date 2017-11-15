@@ -49,7 +49,6 @@
 {
     [super layoutSubviews];
     self.scrollView.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
-//    self.scrollView.contentSize = CGSizeMake(self.bounds.size.width , self.bounds.size.height);
     self.imageView.frame = self.scrollView.bounds;
 }
 
@@ -121,8 +120,9 @@
 #pragma mark - imageViewDidTap
 - (void)imageViewDidTap:(UITapGestureRecognizer *)tapGesture
 {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(photoCellImageViewDidTap)]) {
-        [self.delegate photoCellImageViewDidTap];
+    self.scrollView.zoomScale = 1;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(photoCellImageViewDidTap:)]) {
+        [self.delegate photoCellImageViewDidTap:self];
     }
     
 }

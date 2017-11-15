@@ -307,9 +307,16 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 {
     CGPoint p = [pan translationInView:self.view];
     CGPoint v = [pan velocityInView:self.view];
+    
+    ZGPhotoCell *cell = (ZGPhotoCell *)[self.collectionView cellForItemAtIndexPath:[self.collectionView indexPathsForVisibleItems].firstObject];
+    
     if (pan.state == UIGestureRecognizerStateBegan) {
 //        NSLog(@"%@",NSStringFromCGPoint(p));
 //        NSLog(@"%@",NSStringFromCGPoint(v));
+        
+        // 如果 图片有被放大，要回到原来图片大小
+        cell.scrollView.zoomScale = 1;
+        
         if (p.x != 0) {
             self.shouldPan = NO;
         }else {
@@ -333,7 +340,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
             self.collectionView.hidden = YES;
             self.bottomView.hidden = YES;
             self.panProcessView.hidden = NO;
-            ZGPhotoCell *cell = (ZGPhotoCell *)[self.collectionView cellForItemAtIndexPath:[self.collectionView indexPathsForVisibleItems].firstObject];
+
             self.panProcessView.imgView.image = cell.imageView.image;
 
             [self.panProcessView setProcessPoint:p];

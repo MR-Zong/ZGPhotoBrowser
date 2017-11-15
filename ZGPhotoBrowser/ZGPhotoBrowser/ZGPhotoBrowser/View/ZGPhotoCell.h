@@ -10,11 +10,12 @@
 #import "ZGPhotoModel.h"
 #import <UIImageView+WebCache.h>
 
+@class ZGPhotoCell;
 
 @protocol ZGPhotoCellDelegate  <NSObject>
 
 @optional
-- (void)photoCellImageViewDidTap;
+- (void)photoCellImageViewDidTap:(ZGPhotoCell *)cell;
 
 @end
 
