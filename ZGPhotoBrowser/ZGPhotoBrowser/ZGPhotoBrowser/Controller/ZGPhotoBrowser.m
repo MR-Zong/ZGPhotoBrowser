@@ -9,10 +9,7 @@
 #import "ZGPhotoBrowser.h"
 #import "ZGProgressHUD.h"
 #import "ZGBrowserBottomView.h"
-#import "ZGCollectionViewPBLayout.h"
 #import "ZGPanProcessView.h"
-
-#import "ZGCollectionViewFlowLayout.h"
 
 
 @interface ZGPhotoBrowser () <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,ZGPhotoCellDelegate,ZGBrowserBottomViewDelegate,UIGestureRecognizerDelegate>
@@ -24,8 +21,6 @@
 @property (nonatomic, assign) CGRect fromRect;
 @property (strong, nonatomic) ZGBrowserBottomView *bottomView;
 @property (assign, nonatomic) CGPoint oldContentOffset;
-
-@property (nonatomic, weak) ZGCollectionViewFlowLayout *flowLayout;
 
 @end
 
@@ -73,8 +68,7 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 
 - (void)setupCollectionView
 {
-    ZGCollectionViewFlowLayout *layout = [[ZGCollectionViewFlowLayout alloc] init];
-    self.flowLayout = layout;
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.itemSize = CGSizeMake(self.view.bounds.size.width , self.view.bounds.size.height);
     layout.minimumInteritemSpacing = 0.0;
     layout.minimumLineSpacing = 30.0;
