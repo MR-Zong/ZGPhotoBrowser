@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ZGPhotoBrowser"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "a browser for photos"
 
   s.description  = <<-DESC
