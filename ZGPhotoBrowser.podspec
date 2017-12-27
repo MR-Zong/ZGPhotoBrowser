@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
    s.platform     = :ios, "7.0"
   #s.source       = { :git => "https://github.com/MR-Zong/ZGPhotoBrowser.git", :tag => "#{s.version}" }
   s.source       = { :git => "https://github.com/MR-Zong/ZGPhotoBrowser.git", :branch => "master" }
-  s.source_files  = "ZGPhotoBrowser/ZGPhotoBrowser/ZGPhotoBrowser/**/*.{h,m}"
+  s.source_files  = "ZGPhotoBrowser/ZGPhotoBrowser/Source/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"

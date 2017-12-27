@@ -150,7 +150,7 @@
 		EF6B9EEB1FA56A48000258EB /* ZGPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
-				EF6B9F1E1FA56E8D000258EB /* ZGPhotoBrowser */,
+				EF6B9F1E1FA56E8D000258EB /* Source */,
 				EF6B9EEC1FA56A48000258EB /* AppDelegate.h */,
 				EF6B9EED1FA56A48000258EB /* AppDelegate.m */,
 				EF6B9EEF1FA56A48000258EB /* ViewController.h */,
@@ -183,7 +183,7 @@
 			path = ZGPhotoBrowserUITests;
 			sourceTree = "<group>";
 		};
-		EF6B9F1E1FA56E8D000258EB /* ZGPhotoBrowser */ = {
+		EF6B9F1E1FA56E8D000258EB /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				EF6B9F281FA578FF000258EB /* Libraries */,
@@ -191,7 +191,7 @@
 				EF6B9F201FA56E8D000258EB /* Model */,
 				EF6B9F211FA56E8D000258EB /* View */,
 			);
-			path = ZGPhotoBrowser;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		EF6B9F1F1FA56E8D000258EB /* Controller */ = {
