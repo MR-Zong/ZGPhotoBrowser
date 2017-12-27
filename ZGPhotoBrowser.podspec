@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ZGPhotoBrowser"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "a browser for photos"
 
   s.description  = <<-DESC
@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
   s.license      = { :type => "Apache License, Version 2.0" }
   s.author             = { "ZongGenXu" => "540682674@qq.com" }
    s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/MR-Zong/ZGPhotoBrowser.git", :tag => "#{s.version}" }
-  #s.source       = { :git => "https://github.com/MR-Zong/ZGPhotoBrowser.git", :branch => "master" }
+  #s.source       = { :git => "https://github.com/MR-Zong/ZGPhotoBrowser.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/MR-Zong/ZGPhotoBrowser.git", :branch => "master" }
   s.source_files  = "ZGPhotoBrowser/ZGPhotoBrowser/ZGPhotoBrowser/**/*.{h,m}"
   #s.exclude_files = "Classes/Exclude"
   # s.resource  = "icon.png"
@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
    s.requires_arc = true
-   s.xcconfig = { "HEADER_SEARCH_PATHS" => "${PODS_ROOT}/SDWebImage/Core/","OTHER_LDFLAGS" => "$(inherited)" }
+   #s.xcconfig = { "HEADER_SEARCH_PATHS" => "${PODS_ROOT}/SDWebImage/Core/","OTHER_LDFLAGS" => "$(inherited)" }
    s.dependency "SDWebImage"
 
 end
