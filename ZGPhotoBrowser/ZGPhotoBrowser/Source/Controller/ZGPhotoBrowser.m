@@ -101,9 +101,16 @@ static NSString * const kPhotoCellID = @"kPhotoCellID";
 }
 
 #pragma mark - showInView
-- (void)showInView:(UIView *)view controller:(UIViewController *)vc fromView:(UIView *)fromView modelAtIndex:(NSInteger)index
+- (void)showWithController:(UIViewController *)vc originView:(UIView *)originView modelAtIndex:(NSInteger)index
 {
-    self.fromRect  = [fromView convertRect:fromView.bounds toView:vc.view];
+    if (self.photoArray.count == 0) {
+        return;
+    }
+    if (index > self.photoArray.count - 1) {
+        return;
+    }
+    
+    self.fromRect  = [originView convertRect:originView.bounds toView:vc.view];
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     [vc.view addSubview:self.view];
     [vc addChildViewController:self];

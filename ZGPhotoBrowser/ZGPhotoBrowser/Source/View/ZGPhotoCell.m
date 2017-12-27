@@ -30,6 +30,7 @@
         
         UIImageView *imageView = [[UIImageView alloc] init];
         self.imageView = imageView;
+        self.imageView.image = [UIImage imageNamed:@"default_pic"];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [scrollView addSubview:imageView];
         imageView.userInteractionEnabled = YES;
@@ -55,7 +56,14 @@
 {
     _model = model;
     
-    [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrlString]];
+    if (model.imgUrlString.length > 0) {
+        
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:model.imgUrlString]];
+    }else {
+        if (model.img) {
+            self.imageView.image = model.img;
+        }
+    }
 }
 
 

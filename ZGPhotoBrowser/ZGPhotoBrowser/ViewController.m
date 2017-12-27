@@ -87,7 +87,7 @@
     ZGTestCell *cell = (ZGTestCell *)[collectionView cellForItemAtIndexPath:indexPath];
     photoModel.img = cell.imgView.image;
     self.photoBrowser.photoArray = @[photoModel,photoModel,photoModel,photoModel,photoModel];
-    [self.photoBrowser showInView:collectionView controller:self fromView:cell modelAtIndex:0];
+    [self.photoBrowser showWithController:self originView:cell modelAtIndex:0];
     
 }
 
