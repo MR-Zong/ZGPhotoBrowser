@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZGPhotoModel.h"
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 
 @class ZGPhotoCell;
 

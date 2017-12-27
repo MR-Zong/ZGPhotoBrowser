@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ZGPhotoBrowser"
-  s.version      = "v1.0.0"
+  s.version      = "1.0.0"
   s.summary      = "a browser for photos"
 
   s.description  = <<-DESC
@@ -28,8 +28,8 @@ Pod::Spec.new do |s|
    s.frameworks = "UIKit"
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
-    s.requires_arc = true
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
+   s.requires_arc = true
+   s.xcconfig = { "HEADER_SEARCH_PATHS" => "${PODS_ROOT}/SDWebImage/Core/" }
    s.dependency "SDWebImage"
 
 end
